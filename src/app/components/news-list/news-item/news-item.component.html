@@ -1,0 +1,29 @@
+<li class="list-group-item mb-3 shadow">
+    <div class="row">
+        <div class="col-md-4 card-img">
+          <div [style.backgroundImage]="'url('+ newsItem.urlToImage +')'"
+               *ngIf="newsItem.urlToImage; else blankImage;" class="img">
+          </div>
+          <ng-template #blankImage>
+              <div [style.backgroundImage]="'url(../../../../assets/images/blank.jpeg'"></div>
+          </ng-template>
+        </div>
+        <div class="col-md-8">
+          <h6 class="title">
+            {{ newsItem.title }}
+          </h6>
+          <p class="metadata">
+            <span *ngIf="newsItem.author">by {{ newsItem.author }}</span>
+            <span *ngIf="newsItem.publishedAt">
+              <span *ngIf="newsItem.author"> | </span>
+              {{ newsItem.publishedAt | date: 'short' }}
+            </span>
+          </p>
+          <p class="desc">{{ newsItem.description }}</p>
+          <br><br>
+          <p class="reflink">
+            <i>Read more at <a [href]="newsItem.url" target="_blank">{{ newsItem.source.name }}</a></i>
+          </p>
+        </div>
+    </div>
+</li>

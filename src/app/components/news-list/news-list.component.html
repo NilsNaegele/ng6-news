@@ -1,0 +1,11 @@
+<ul class="container mgtp list-group col-md-8 col-lg-6">
+    <div *ngFor="let newsItem of newsList?.articles
+                 | paginate: {itemsPerPage: 7, currentPage: pageIndex,
+                              totalItems: newsList?.totalResults}">
+        <app-news-item [newsItem]="newsItem"></app-news-item>
+    </div>
+    <div class="pg">
+      <pagination-controls (pageChange)="pageIndex= $event; getNews(category, pageIndex)"></pagination-controls>
+    </div>
+</ul>
+<ngx-spinner></ngx-spinner>
